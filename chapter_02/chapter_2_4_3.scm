@@ -48,12 +48,20 @@
     ( lambda ( r a ) ( tag ( make-from-mag-ang r a ) ) ) )
   'done )
 
+;;; apply-generic method from book
 ( define ( apply-generic op . args )
   ( let ( ( type-tags ( map type-tag args ) ) )
     ( let ( ( proc ( get op type-tags ) ) )
       ( if proc
            ( apply proc ( map contents args ) )
            ( error " no method " ( list op type-tags ) ) ) ) ) )
+
+;;; apply-generic method, process one argument
+( define ( apply-generic-1 op arg )
+    ( let ( ( proc ( get op ( list ( type-tag arg ) ) ) ) )
+      ( if proc
+           ( proc ( contents arg ) )
+           ( error " no method " ( list op ( type-tag arg ) ) ) ) ) )
 
 ( define square ( lambda (x) (* x x) ) )
 
@@ -62,6 +70,10 @@
 ( define ( magnitude-1 z ) ( apply-generic 'magnitude z ) ) 
 ( define ( angle-1     z ) ( apply-generic 'angle     z ) )
 
+( define ( real-part-2 z ) ( apply-generic-1 'real-part z ) )
+( define ( imag-part-2 z ) ( apply-generic-1 'imag-part z ) )
+( define ( magnitude-2 z ) ( apply-generic-1 'magnitude z ) ) 
+( define ( angle-2     z ) ( apply-generic-1 'angle     z ) )
 
 ( define ( add-complex z1 z2 )
   (make-from-real-imag (+ (real-part-1 z1) (real-part-1 z2))
