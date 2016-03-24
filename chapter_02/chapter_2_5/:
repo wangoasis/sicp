@@ -1,0 +1,13 @@
+( load "table-get-put.scm" )
+( load "scheme-number-package.scm" )
+( load "rational-package.scm" )
+( load "generic-rec-polar.scm" )
+( load "complex-package.scm" )
+
+( install-rectangular-package )
+( install-polar-package )
+( install-complex-package )
+
+( define x ( make-from-real-imag 4 3 ) )
+( define y ( make-scheme-number 5 ) )
+( define z ( make-rational 4 7 ) )
