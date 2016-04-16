@@ -1,0 +1,23 @@
+( load "connector.scm" )
+( load "module.scm" )
+( load "probe.scm" )
+
+( define false #f )
+( define true #t ) 
+
+( define C ( make-connector ) )
+( define F ( make-connector ) )
+
+( define ( C-F-converter c f )
+  ( let ( ( u ( make-connector ) )
+          ( v ( make-connector ) )
+          ( w ( make-connector ) )
+          ( x ( make-connector ) )
+          ( y ( make-connector ) ) )
+  ( multiplier c w u )
+  ( multiplier v x u )
+  ( adder v y f )
+  ( constant 9 w )
+  ( constant 5 x )
+  ( constant 32 y )
+  'ok ) )
