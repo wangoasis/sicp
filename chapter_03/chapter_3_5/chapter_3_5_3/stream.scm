@@ -95,3 +95,8 @@
 ( define ( display-line x )
   ( newline )
   ( display x ) )
+
+( define ( scale-stream stream factor )
+  ( stream-map 
+    ( lambda ( x ) ( * x factor ) )
+    stream ) ) 
